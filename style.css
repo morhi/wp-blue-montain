@@ -1,0 +1,60 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+:root {
+    --admin-bar-height: 32px;
+    --footer-min-height: 60px;
+}
+
+html, body {
+    position: relative;
+    height: 100%;
+}
+
+html.admin-bar {
+    margin-top: unset !important;
+    padding-top: var(--admin-bar-height);
+}
+
+body {
+    padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+    body {
+        padding-top: 56px;
+    }
+}
+
+body.admin-bar .fixed-top {
+    top: var(--admin-bar-height);
+}
+
+#page-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    padding: 50px;
+}
+
+footer {
+    min-height: var(--footer-min-height);
+    display: flex !important;
+    align-items: center;
+    background-color: var(--light);
+}
+
+footer a {
+    color: var(--gray)
+}
+
+footer .items {
+    display: flex;
+}
+
+footer .items > div {
+    margin: 0 10px 0 10px;
+}

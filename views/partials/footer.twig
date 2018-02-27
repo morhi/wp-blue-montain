@@ -1,0 +1,17 @@
+<footer class="footer">
+    <div class="items container">
+        {% for item in menus['footer'].items %}
+            <div id="footer-item-{{ item.ID }}" class="{{ item.class }}">
+                <a href="{{ item.link }}">{{ item.title }}</a>
+            </div>
+        {% endfor %}
+    </div>
+</footer>
+
+{% if scripts %}
+    {% for script in scripts %}
+        <script src="{{ script }}"></script>
+    {% endfor %}
+{% endif %}
+
+{{ function('wp_footer') }}
