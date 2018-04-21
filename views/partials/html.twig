@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {#<link rel="author" href="{{ site.theme.link }}/humans.txt" />#}
     {#<link rel="pingback" href="{{ site.pingback_url }}" />#}
-    {% if scripts %}
+    {% if styles %}
         {% for style in styles %}
             <link rel="stylesheet" href="{{ style }}"/>
         {% endfor %}
@@ -31,5 +31,12 @@
 
     {% include 'partials/footer.twig' %}
 </div>
+{{ function('wp_footer') }}
+
+{% if scripts %}
+    {% for script in scripts %}
+        <script src="{{ script }}"></script>
+    {% endfor %}
+{% endif %}
 </body>
 </html>
