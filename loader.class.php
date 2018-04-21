@@ -226,14 +226,14 @@ class Loader
         });
 
         $css = file_get_contents(__DIR__ . '/customize.css');
-        $regex = '|/\*(.*)\*/\n\s*([a-z\-]*):(.*);|';
+        $regex = '|/\*(.+)\*/\n\s*([a-z\-]+):(.+);|';
 
         // Add color controls
         add_action('customize_register', function (\WP_Customize_Manager $wp_customize) use ($css, $regex) {
-            $section = 'theme_section_customize';
+            $section = 'theme_section_css_settings';
 
             $wp_customize->add_section($section, array(
-                'title' => __('Customize'),
+                'title' => __('Theme Settings'),
                 'priority' => 30,
             ));
 
@@ -243,21 +243,28 @@ class Loader
                 $property = trim($item[2]);
                 $value = trim($item[3]);
 
-                switch ($property) {
-                    case 'color':
-                    case 'background-color':
-                        $wp_customize->add_setting($id, [
-                            'default' => $value
-                        ]);
+                $wp_customize->add_setting($id, [
+                    'default' => $value
+                ]);
 
-                        $wp_customize->add_control(new \WP_Customize_Color_Control($wp_customize, $id, array(
-                            'label' => $title,
-                            'section' => $section,
-                            'settings' => $id,
-                        )));
-                        break;
-                    default:
-                        break;
+                if (!$wp_customize->get_control($id)) {
+                    switch ($property) {
+                        case 'color':
+                        case 'background-color':
+                            $wp_customize->add_control(new \WP_Customize_Color_Control($wp_customize, $id, array(
+                                'label' => $title,
+                                'section' => $section,
+                                'settings' => $id,
+                            )));
+                            break;
+                        default:
+                            $wp_customize->add_control(new \WP_Customize_Control($wp_customize, $id, array(
+                                'label' => $title,
+                                'section' => $section,
+                                'settings' => $id,
+                            )));
+                            break;
+                    }
                 }
 
             }, $css);

@@ -23,3 +23,12 @@ a:hover {
     background-color: #5759b7;
 }
 
+.fixed-top {
+    /* Main Navigation Height */
+    height: 54px;
+}
+
+body {
+    /* Main Navigation Height */
+    padding-top: 54px;
+}
