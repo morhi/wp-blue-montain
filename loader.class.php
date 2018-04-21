@@ -224,6 +224,59 @@ class Loader
                 return $args;
             });
         });
+
+        $css = file_get_contents(__DIR__ . '/customize.css');
+        $regex = '|/\*(.*)\*/\n\s*([a-z\-]*):(.*);|';
+
+        // Add color controls
+        add_action('customize_register', function (\WP_Customize_Manager $wp_customize) use ($css, $regex) {
+            $section = 'theme_section_customize';
+
+            $wp_customize->add_section($section, array(
+                'title' => __('Customize'),
+                'priority' => 30,
+            ));
+
+            preg_replace_callback($regex, function ($item) use ($wp_customize, $section) {
+                $title = trim($item[1]);
+                $id = strtolower(str_replace(' ', '-', $title));
+                $property = trim($item[2]);
+                $value = trim($item[3]);
+
+                switch ($property) {
+                    case 'color':
+                    case 'background-color':
+                        $wp_customize->add_setting($id, [
+                            'default' => $value
+                        ]);
+
+                        $wp_customize->add_control(new \WP_Customize_Color_Control($wp_customize, $id, array(
+                            'label' => $title,
+                            'section' => $section,
+                            'settings' => $id,
+                        )));
+                        break;
+                    default:
+                        break;
+                }
+
+            }, $css);
+        });
+
+        // Replace css values
+        add_action('wp_head', function () use ($css, $regex) {
+            $css = preg_replace_callback($regex, function ($item) {
+                $title = trim($item[1]);
+                $id = strtolower(str_replace(' ', '-', $title));
+                $property = trim($item[2]);
+                $value = trim($item[3]);
+
+                return $property . ':' . get_theme_mod($id, $value) . ';';
+            }, $css);
+
+            ?>
+            <style type="text/css"><?php echo $css ?></style><?php
+        });
     }
 
     /**

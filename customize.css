@@ -1,0 +1,25 @@
+p, span {
+    /* Default Text Color */
+    color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    /* Headings Color */
+    color: #334;
+}
+
+a {
+    /* Link Color */
+    color: #007bff;
+}
+
+a:hover {
+    /* Link Hover Color */
+    color: #429eff;
+}
+
+.background-main-menu {
+    /* Main Navigation Background */
+    background-color: #5759b7;
+}
+
