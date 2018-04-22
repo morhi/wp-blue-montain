@@ -2,5 +2,7 @@
 
 global $app;
 
-// Render the corresponding twig template
-$app->render();
+if ($app) {
+    // Render the corresponding twig template
+    $app->render();
+}
