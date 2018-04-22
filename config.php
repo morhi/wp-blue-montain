@@ -12,6 +12,7 @@ return [
      * A list of script which should be included at the end of the body.
      */
     'scripts' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js',
         get_template_directory_uri() . '/assets/js/custom.js'
     ],
     /**
