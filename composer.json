@@ -1,0 +1,21 @@
+{
+  "name": "morhi/blue-montain",
+  "description": "A WordPress Theme using Timber and Twig",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Maurice Hildebrandt",
+      "email": "maurice.h@mailbox.org"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "BlueMountain\\": "src/",
+      "BlueMountain\\Context\\": "src/context"
+    }
+  },
+  "require": {
+    "timber/timber": "^1.7"
+  }
+}

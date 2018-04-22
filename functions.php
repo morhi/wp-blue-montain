@@ -1,12 +1,9 @@
 <?php
 
-require_once dirname(__FILE__) . '/loader.class.php';
-require_once dirname(__FILE__) . '/plugins/timber-library/timber.php';
+require dirname(__FILE__) . '/vendor/autoload.php';
 
-global $loader;
-
-$loader = new \BlueMountain\Loader();
-$loader->boot();
+$app = new \BlueMountain\Application();
+$app->boot();
 
 add_action('after_switch_theme', function(...$args){
     // Theme now activated

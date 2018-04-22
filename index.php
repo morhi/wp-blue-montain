@@ -1,6 +1,6 @@
 <?php
 
-global $loader;
+global $app;
 
 // Render the corresponding twig template
-$loader->render();
+$app->render();
