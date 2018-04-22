@@ -225,6 +225,14 @@ class Loader
             });
         });
 
+        $this->initCustomizer();
+    }
+
+    /**
+     * Adds a section to the theme customizer so that the user
+     * can edit some theme settings.
+     */
+    private function initCustomizer() {
         $css = file_get_contents(__DIR__ . '/customize.css');
         $regex = '|/\*(.+)\*/\n\s*([a-z\-]+):(.+);|';
 
@@ -261,7 +269,7 @@ class Loader
                             $wp_customize->add_control(new \WP_Customize_Control($wp_customize, $id, array(
                                 'label' => $title,
                                 'section' => $section,
-                                'settings' => $id,
+                                'settings' => $id
                             )));
                             break;
                     }
