@@ -10,6 +10,6 @@ Vue.component('v-text', {
     template: '<p v-html="content"></p>'
 });
 
-const vm = new Vue({
-    el: '#page-wrapper'
-});
+// const vm = new Vue({
+//     el: '#page-wrapper'
+// });
