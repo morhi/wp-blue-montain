@@ -40,6 +40,10 @@ main {
     padding: 50px;
 }
 
+main.wide {
+    padding: 0;
+}
+
 footer {
     min-height: var(--footer-min-height);
     display: flex !important;

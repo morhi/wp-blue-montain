@@ -327,7 +327,7 @@ class Application {
      */
     private function getContextForTemplate($template) {
         $context = $this->getContext();
-        $class = ucfirst($template);
+        $class = str_replace(' ', '', ucwords(str_replace('-', ' ', $template)));
 
         $fullClassName = "BlueMountain\\Context\\" . $class;
 
